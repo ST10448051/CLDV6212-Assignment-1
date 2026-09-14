@@ -1,0 +1,202 @@
+{
+  "info": {
+    "_postman_id": "coffee-n-chill-part1",
+    "name": "CoffeeNChill Part 1",
+    "description": "Postman collection for the CoffeeNChill Azure Functions Part 1 assessment. Covers Azure Table Storage menu endpoints and Azure Blob Storage staff document endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Create Menu Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"partitionKey\": \"Hot Drinks\",\n  \"rowKey\": \"COF-001\",\n  \"name\": \"Espresso\",\n  \"description\": \"Strong single-shot coffee\",\n  \"price\": 25.00,\n  \"isAvailable\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/menu",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "menu"
+          ]
+        }
+      }
+    },
+    {
+      "name": "02 - Get All Menu Items",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/menu",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "menu"
+          ]
+        }
+      }
+    },
+    {
+      "name": "03 - Get Menu Items By Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/menu/category/Hot%20Drinks",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "menu",
+            "category",
+            "Hot%20Drinks"
+          ]
+        }
+      }
+    },
+    {
+      "name": "04 - Update Menu Item",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Espresso\",\n  \"description\": \"Strong single-shot coffee\",\n  \"price\": 28.00,\n  \"isAvailable\": false\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/menu/Hot%20Drinks/COF-001",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "menu",
+            "Hot%20Drinks",
+            "COF-001"
+          ]
+        }
+      }
+    },
+    {
+      "name": "05 - Delete Menu Item",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/menu/Hot%20Drinks/COF-001",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "menu",
+            "Hot%20Drinks",
+            "COF-001"
+          ]
+        }
+      }
+    },
+    {
+      "name": "06 - Upload Staff Document",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/documents/upload",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "documents",
+            "upload"
+          ]
+        },
+        "description": "Select a PDF or other staff operational document for the file field before sending."
+      }
+    },
+    {
+      "name": "07 - List Staff Documents",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/documents",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "documents"
+          ]
+        }
+      }
+    },
+    {
+      "name": "08 - Download Staff Document",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/documents/download/yourfile.pdf",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "documents",
+            "download",
+            "yourfile.pdf"
+          ]
+        },
+        "description": "Replace yourfile.pdf with the actual filename returned by the List Staff Documents request."
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7071",
+      "type": "string"
+    }
+  ]
+}
